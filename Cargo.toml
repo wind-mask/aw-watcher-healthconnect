@@ -1,0 +1,32 @@
+[package]
+name = "aw-watcher-healthconnect"
+version = "0.1.0"
+edition = "2024"
+description = "ActivityWatch watcher receiving Health Connect Webhook JSON"
+license = "MIT"
+readme = "README.md"
+publish = false
+
+[dependencies]
+anyhow = "1"
+aw-client-rust = { git = "https://github.com/ActivityWatch/aw-server-rust", rev = "af70e58d97cde37bb004886cec095c466e97fe6b" }
+aw-models = { git = "https://github.com/ActivityWatch/aw-server-rust", rev = "af70e58d97cde37bb004886cec095c466e97fe6b" }
+axum = "0.8"
+chrono = { version = "0.4", features = ["serde"] }
+clap = { version = "4", features = ["derive", "env"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+subtle = "2"
+thiserror = "2"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "net", "signal", "sync", "time"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[dev-dependencies]
+futures-util = "0.3"
+tower = { version = "0.5", features = ["util"] }
+
+[profile.release]
+lto = "thin"
+strip = true
